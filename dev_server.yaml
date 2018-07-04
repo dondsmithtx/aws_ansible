@@ -6,7 +6,7 @@
   - name: Build dev server
     include_role:
       name: cloudformation
-      tasks_from: dev_server.yaml
+      tasks_from: server.yaml
     vars:
     - state: present
     - description: "Development Server"
