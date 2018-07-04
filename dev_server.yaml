@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: Build dev server
+    include_role:
+      name: cloudformation
+      tasks_from: dev_server.yaml
+    vars:
+    - state: present
+    - description: "Development Server"
+    - key_name: "dsmith-aws"
+    - image_id: "ami-0ad99772"
+    - region: "us-west-2"
+    - instance_type: "t2.micro"
+    - security_groups: "dev"
+    - security_group_ids: "sg-04421d43aac81b8b6"
+    - stack_name: "dev_server"
+    - resource_name: "dev"

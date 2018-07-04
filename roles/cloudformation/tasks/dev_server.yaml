@@ -1,0 +1,33 @@
+---
+
+- set_fact: 
+    state: present
+  when: state is undefined
+- set_fact: 
+    instance_type: t2.micro
+  when: instance_type is undefined
+- set_fact: 
+    tag_name:  '{{ stack_name|replace("_", ":") }}'
+
+- name: create/delete cloudformation stack for dev_server
+  cloudformation:
+    stack_name: '{{ stack_name|replace("_", "-") }}'
+    state: "{{ state }}"
+    region: "{{ region }}"
+    template_body: "{{ lookup('template', 'cft_ec2.j2') }}"
+    template_parameters:
+      KeyName: "{{ key_name }}"
+      InstanceType: "{{ instance_type }}"
+      ImageId: "{{ image_id }}"
+      SecurityGroups: "{{ security_groups }}"
+      SecurityGroupIds: "{{ security_group_ids }}"
+      NameTag: "{{ tag_name}}"
+  register: stack
+
+- name: debug
+  debug:
+    msg: "{{ stack }}"
+
+- name: debug show stack outputs
+  debug:
+    msg: "{{ stack.stack_outputs }}"

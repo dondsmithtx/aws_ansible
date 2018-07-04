@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "{{ description }}"
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: ""
+  ImageId:
+    Type: String
+    Default: ""
+  InstanceType:
+    Type: String
+    Default: ""
+  SecurityGroups:
+    Type: String
+    Default: ""
+  SecurityGroupIds:
+    Type: String
+    Default: ""
+  NameTag:
+    Type: String
+    Default: "{{ tag_name }}"
+Resources:
+  "{{ resource_name }}":
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      KeyName: !Ref 'KeyName'
+      ImageId: !Ref 'ImageId'
+      InstanceType: !Ref 'InstanceType'
+      SecurityGroupIds:
+        - !Ref 'SecurityGroupIds'
+      SecurityGroups:
+        - !Ref 'SecurityGroups'
+      Tags:
+        -
+          Key: Name
+          Value: !Ref 'NameTag'
