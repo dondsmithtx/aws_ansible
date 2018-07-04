@@ -3,18 +3,19 @@
 - hosts: localhost
   connection: local
   tasks:
+
   - name: Build dev server
     include_role:
       name: cloudformation
-      tasks_from: server.yaml
+      tasks_from: ec2.yaml
     vars:
     - state: present
-    - description: "Development Server"
+    - region: "us-west-2"
     - key_name: "dsmith-aws"
     - image_id: "ami-0ad99772"
-    - region: "us-west-2"
     - instance_type: "t2.micro"
     - security_groups: "dev"
     - security_group_ids: "sg-04421d43aac81b8b6"
+    - description: "Development Server"
     - stack_name: "dev_server"
-    - resource_name: "dev"
+    - ec2_resource_name: "dev"
