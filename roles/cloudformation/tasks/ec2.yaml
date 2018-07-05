@@ -15,7 +15,7 @@
   cloudformation:
     state: "{{ state }}"
     region: "{{ region }}"
-    stack_name: '{{ stack_name|replace("_", "-") }}'
+    stack_name: "{{ stack_name }}"
     template_body: "{{ lookup('template', 'ec2.j2') }}"
     template_parameters:
       KeyName: "{{ key_name }}"

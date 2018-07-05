@@ -17,5 +17,5 @@
     - security_groups: "dev"
     - security_group_ids: "sg-04421d43aac81b8b6"
     - description: "Development Server"
-    - stack_name: "dev_server"
+    - stack_name: "dev-server"
     - ec2_resource_name: "dev"
