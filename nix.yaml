@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  connection: local
+  tasks:
+
+  - name: Create dev server cloudformation stack
+    include_role:
+      name: cloudformation
+      tasks_from: ec2.yaml
+    vars:
+    - state: present
+    - region: "us-west-2"
+    - key_name: "dsmith-aws"
+    - image_id: "ami-c05c3bb8"
+    - instance_type: "t2.micro"
+    - security_groups: "dev"
+    - security_group_ids: "sg-04421d43aac81b8b6"
+    - description: "Development Server"
+    - stack_name: "dev-server"
+    - ec2_resource_name: "dev"

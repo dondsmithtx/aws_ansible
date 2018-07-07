@@ -1,0 +1,8 @@
+---
+
+- name: add the unstable channel
+  command: 'nix-channel --add https://nixos.org/channels/nixos-unstable nixos'
+
+- name: update to unstable
+  command: 'nixos-rebuild switch --upgrade'
+

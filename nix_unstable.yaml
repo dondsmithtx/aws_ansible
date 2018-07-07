@@ -1,0 +1,10 @@
+---
+
+- hosts: nix
+
+  tasks:
+
+  - name: update nix server to unstable
+    include_role:
+      name: nix
+      tasks_from: unstable.yaml
